@@ -1,0 +1,12 @@
+class Solution:
+    def removeDigit(self, number: str, digit: str) -> str:
+        ans = -1
+        ans_str = ''
+        for i in range(0, len(number)):
+            if number[i] == digit:
+                new_number = number[0: i] + number[i+1:]
+                if int(new_number) > ans:
+                    ans = int(new_number)
+                    ans_str = new_number
+                    
+        return ans_str
