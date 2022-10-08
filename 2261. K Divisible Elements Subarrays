@@ -1,0 +1,24 @@
+class Solution:
+    def countDistinct(self, nums: List[int], k: int, p: int) -> int:
+        # print(f'k is {k}, p is {p}')
+        str_nums = [str(n) for n in nums]
+        exists = set()
+        all_subarrays = []
+        for i in range(0, len(nums)):
+            divp = 0
+            # print(f'i is {i}')
+            for j in range(i, len(nums)):
+                # print(f'j is {j}')
+                # print(f'Evaluating {nums[i:j+1]}')
+                if not (nums[j] % p):
+                    # print(f'{nums[j]} is divisible by p')
+                    divp += 1
+                if divp <= k:
+                    str_subarray = ','.join(str_nums[i:j+1])
+                    if str_subarray not in exists:
+                        all_subarrays.append(nums[i:j+1])
+                        exists.add(str_subarray)
+                else:
+                    break
+        # print(all_subarrays)
+        return len(all_subarrays)
