@@ -1,0 +1,24 @@
+#https://leetcode.com/problems/total-appeal-of-a-string/discuss/1996203/DP/1634470
+class Solution:
+    def appealSum(self, s: str) -> int:
+        last_seen = dict()
+        appeal = [0] * len(s)
+        
+        appeal[0] = 1
+        last_seen[s[0]] = 0
+        
+        for i in range(1, len(s)):
+            c = s[i]
+            # print(i, c, last_seen)
+            if c in last_seen:
+                # print(f'Adding {1 + i - (last_seen[c] + 1)} to prev appeal {appeal[i-1]}')
+                appeal[i] = appeal[i-1] + 1 + i - (last_seen[c] + 1)
+            else:
+                # print(f'Adding {1 + i} to prev appeal {appeal[i-1]}')
+                appeal[i] = appeal[i-1] + 1 + i
+            
+            last_seen[c] = i
+            
+        
+        # print(appeal)
+        return sum(appeal)
