@@ -1,0 +1,16 @@
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        addn = digits[len(digits) - 1] + 1
+        carry = addn // 10
+        addn = addn % 10
+        digits[len(digits) - 1] = addn
+
+        for i in range(len(digits) - 2, -1, -1):
+            addn = digits[i] + carry
+            carry = addn // 10
+            addn = addn % 10
+            digits[i] = addn
+
+        if carry:
+            return [carry] + digits
+        return digits
