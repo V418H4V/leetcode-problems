@@ -1,0 +1,17 @@
+class Solution:
+    def kthFactor(self, n: int, k: int) -> int:
+        factors_front = []
+        factors_back = deque()
+
+        for i in range(1, floor(sqrt(n)) + 1):
+            if n % i == 0:
+                factors_front.append(i)
+                if i*i != n:
+                    factors_back.appendleft(n//i)
+
+        if len(factors_front) >= k:
+            return factors_front[k-1]
+        elif len(factors_back) >= (k - len(factors_front)):
+            return factors_back[k - len(factors_front) - 1]
+        
+        return -1
