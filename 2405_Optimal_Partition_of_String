@@ -1,0 +1,15 @@
+class Solution:
+    def partitionString(self, s: str) -> int:
+        present = set()
+        present.add(s[0])
+        count = 0
+
+        for i in range(1, len(s)):
+            if s[i] in present:
+                count += 1
+                # print(f'Starting a new substring at {i}th position')
+                present.clear()
+            
+            present.add(s[i])
+
+        return count + 1
